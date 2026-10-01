@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Lab 01 generated data & logs
+labs/lab01/data/*.csv
+labs/lab01/data/*.json
+!labs/lab01/data/.gitkeep
