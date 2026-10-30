@@ -72,7 +72,7 @@ def create_users(users_list: tuple[tuple[str, str], ...]) -> None:
                 user_record = create_user(username, password)
                 writer.writerow(user_record)
         print(f"Базу користувачів успішно записано у {USERS_CSV_PATH}")
-    except OSError as error:
+    except (OSError, FileNotFoundError, PermissionError) as error:
         print(f"Помилка при записі у файл CSV: {error}")
         raise
 
@@ -92,11 +92,8 @@ def read_users_db() -> list[dict[str, str]]:
             print(f"{user['username']:<20} | {short_hash:<35}")
 
         return users_db
-    except FileNotFoundError:
-        print(f"Помилка: файл {USERS_CSV_PATH} не знайдено.")
-        raise
-    except OSError as error:
-        print(f"Помилка вводу/виводу при читанні CSV: {error}")
+    except (OSError, FileNotFoundError, PermissionError) as error:
+        print(f"Помилка при читанні CSV: {error}")
         raise
 
 
@@ -136,7 +133,7 @@ def log_event(func):
 
                 with open(LOG_JSON_PATH, mode="w", encoding="utf-8") as f:
                     json.dump(logs, f, indent=4, ensure_ascii=False)
-            except OSError as error:
+            except (OSError, FileNotFoundError, PermissionError) as error:
                 print(f"Помилка запису логів у JSON: {error}")
 
     return wrapper
@@ -206,7 +203,7 @@ def run_task3() -> None:
 
         print(f"\nЖурнал успішно збережено у: {LOG_JSON_PATH}")
 
-    except (FileNotFoundError, OSError) as io_err:
+    except (OSError, FileNotFoundError, PermissionError) as io_err:
         print(f"Критична файлова помилка: {io_err}")
     except (ValidationError, ValueError) as val_err:
         print(f"Критична помилка валідації: {val_err}")
