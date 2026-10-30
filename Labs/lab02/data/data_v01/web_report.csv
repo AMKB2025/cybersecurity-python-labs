@@ -1,0 +1,11 @@
+Section,Type_Or_IP,Details,Extra
+TOP_ERROR_IP,203.0.113.99,Total Errors: 18,"{401: 2, 400: 4, 404: 9, 403: 2, 500: 1}"
+TOP_ERROR_IP,192.0.2.11,Total Errors: 7,"{401: 3, 500: 1, 400: 2, 404: 1}"
+TOP_ERROR_IP,192.0.2.10,Total Errors: 4,"{500: 2, 403: 1, 400: 1}"
+TOP_ERROR_IP,203.0.113.45,Total Errors: 3,"{400: 1, 404: 1, 403: 1}"
+TOP_ERROR_IP,198.51.100.23,Total Errors: 3,"{403: 2, 404: 1}"
+ATTACK_ALERT,203.0.113.99,SQLi,/login?user=admin'
+ATTACK_ALERT,203.0.113.99,Directory Traversal,/../../etc/passwd
+ATTACK_ALERT,203.0.113.99,Directory Traversal,/download?file=../../../etc/shadow
+ATTACK_ALERT,203.0.113.99,XSS,/search?q=<script>alert(1)</script>
+ATTACK_ALERT,203.0.113.99,XSS,/comment?text=%3Cscript%3Ealert(1)%3C/script%3E
